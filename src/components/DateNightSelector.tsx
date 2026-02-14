@@ -1,6 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import NextImage from "next/image";
 
 const GAME_DATA = [
   {
@@ -93,6 +94,8 @@ export default function DateNightSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [selections, setSelections] = useState<string[]>([]);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [errorImages, setErrorImages] = useState<Set<number>>(new Set());
   const isFinished = step >= GAME_DATA.length;
 
   const handleSelect = (choice: string) => {
@@ -154,13 +157,31 @@ export default function DateNightSelector() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.1 }}
                         onClick={() => handleSelect(opt.t)}
-                        className="relative rounded-lg overflow-hidden group cursor-pointer"
+                        className="relative rounded-lg overflow-hidden group cursor-pointer h-[180px]"
                       >
-                        <img
-                          src={opt.i}
-                          alt={opt.t}
-                          className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
-                        />
+                        {!errorImages.has(i) ? (
+                          <>
+                            <img
+                              src={opt.i}
+                              alt={opt.t}
+                              className={`absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110 ${
+                                loadedImages.has(i) ? "opacity-100" : "opacity-0"
+                              }`}
+                              onLoad={() => setLoadedImages(prev => new Set([...prev, i]))}
+                              onError={() => setErrorImages(prev => new Set([...prev, i]))}
+                              loading="lazy"
+                            />
+                            {!loadedImages.has(i) && (
+                              <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+                                <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <div className="absolute inset-0 bg-gray-700 flex items-center justify-center">
+                            <span className="text-white/50 text-xs">Image Error</span>
+                          </div>
+                        )}
                         <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 flex items-center justify-center transition">
                           <span className="text-white font-serif italic text-lg">
                             {opt.t}

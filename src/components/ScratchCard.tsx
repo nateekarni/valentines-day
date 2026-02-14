@@ -101,10 +101,12 @@ export default function ScratchCard() {
         className="relative w-full max-w-[300px] aspect-square mx-auto rounded-xl overflow-hidden shadow-xl bg-white border-4 border-white"
       >
         <NextImage
-          src="/images/Family (1).jpg"
+          src="/images/Family (1).JPG"
           alt="Hidden"
           fill
           className="object-cover"
+          quality={85}
+          priority
         />
         <canvas
           ref={canvasRef}
