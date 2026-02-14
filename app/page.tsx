@@ -84,8 +84,8 @@ export default function Home() {
           images={[
             "/images/2208 (1).jpg",
             "/images/2208 (2).jpg",
-            "/images/2208 (3).jpg",
-            "/images/2208 (4).jpg",
+            "/images/2208 (3).JPG",
+            "/images/2208 (4).JPG",
           ]}
           note=""
           layout="text-left"
@@ -96,9 +96,9 @@ export default function Home() {
           title="First Consert"
           description="ไปดูคอนเสิร์ตด้วยกันครั้งแรก"
           images={[
-            "/images/2209 (1).jpg",
-            "/images/2209 (2).jpg",
-            "/images/2209 (3).jpg",
+            "/images/2209 (1).JPG",
+            "/images/2209 (2).JPG",
+            "/images/2209 (3).JPG",
           ]}
           layout="text-right"
           delay={0.3}
@@ -108,9 +108,9 @@ export default function Home() {
           title="Consert Again"
           description="ไปดูคอนเสิร์ตด้วยกันครั้งที่สอง"
           images={[
-            "/images/2210 (1).jpg",
+            "/images/2210 (1).JPG",
             "/images/2210 (2).jpg",
-            "/images/2210 (3).jpg",
+            "/images/2210 (3).JPG",
           ]}
           layout="text-left"
           delay={0.3}
@@ -120,9 +120,9 @@ export default function Home() {
           title="First Dog Cafe"
           description="ไปเจอน้องหมาที่คาเฟ่สัตว์เลี้ยงด้วยกันครั้งแรก"
           images={[
-            "/images/2312 (1).jpg",
-            "/images/2312 (2).jpg",
-            "/images/2312 (3).jpg",
+            "/images/2312 (1).JPG",
+            "/images/2312 (2).JPG",
+            "/images/2312 (3).JPG",
           ]}
           layout="text-right"
           delay={0.3}
@@ -143,7 +143,7 @@ export default function Home() {
           date="Jan, 2024"
           title="First Bang Saen"
           description="ไปเที่ยวที่ชลบุรีครั้งแรก"
-          images={["/images/2401 (1).jpg", "/images/2401 (2).jpg"]}
+          images={["/images/2401 (1).JPG", "/images/2401 (2).JPG"]}
           layout="text-right"
           delay={0.3}
         />
@@ -152,9 +152,9 @@ export default function Home() {
           title="Cat Cafe"
           description="คาเฟ่แมวร้านโปรด"
           images={[
-            "/images/2404 (1).jpg",
-            "/images/2404 (2).jpg",
-            "/images/2404 (3).jpg",
+            "/images/2404 (1).JPG",
+            "/images/2404 (2).JPG",
+            "/images/2404 (3).JPG",
           ]}
           layout="text-left"
           delay={0.3}
@@ -164,11 +164,11 @@ export default function Home() {
           title="Baby Sitter"
           description="เลี้ยงชิโน่ด้วยกัน"
           images={[
-            "/images/2406 (1).jpg",
-            "/images/2406 (2).jpg",
-            "/images/2406 (3).jpg",
-            "/images/2406 (4).jpg",
-            "/images/2406 (5).jpg",
+            "/images/2406 (1).JPG",
+            "/images/2406 (2).JPG",
+            "/images/2406 (3).JPG",
+            "/images/2406 (4).JPG",
+            "/images/2406 (5).JPG",
           ]}
           layout="text-right"
           delay={0.3}
@@ -178,9 +178,9 @@ export default function Home() {
           title="Our Murphy"
           description="รับเลี้ยงเมอร์ฟแต่ไม่รอด"
           images={[
-            "/images/2406 (6).jpg",
-            "/images/2406 (7).jpg",
-            "/images/2406 (8).jpg",
+            "/images/2406 (6).JPG",
+            "/images/2406 (7).JPG",
+            "/images/2406 (8).JPG",
           ]}
           layout="text-left"
           delay={0.3}
@@ -190,9 +190,9 @@ export default function Home() {
           title="Our Baby 💖"
           description="แมรี่ลูกสาวของเรา"
           images={[
-            "/images/2407 (1).jpg",
-            "/images/2407 (2).jpg",
-            "/images/2407 (3).jpg",
+            "/images/2407 (1).JPG",
+            "/images/2407 (2).JPG",
+            "/images/2407 (3).JPG",
           ]}
           note="Welcome Mary 🐶"
           layout="text-right"
@@ -203,10 +203,10 @@ export default function Home() {
           title="Lovely Family"
           description="ครอบครัวที่น่ารักของเรา 3 คน"
           images={[
-            "/images/Family (1).jpg",
-            "/images/Family (2).jpg",
-            "/images/Family (3).jpg",
-            "/images/Family (4).jpg",
+            "/images/Family (1).JPG",
+            "/images/Family (2).JPG",
+            "/images/Family (3).JPG",
+            "/images/Family (4).JPG",
           ]}
           layout="text-left"
           delay={0.3}
