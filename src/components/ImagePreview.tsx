@@ -19,17 +19,25 @@ export default function ImagePreview({
     onClose,
 }: ImagePreviewProps) {
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
         setCurrentIndex(initialIndex);
+        setIsImageLoaded(false);
+        setHasError(false);
     }, [initialIndex]);
 
     const nextImage = useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
+        setIsImageLoaded(false);
+        setHasError(false);
     }, [images.length]);
 
     const prevImage = useCallback(() => {
         setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+        setIsImageLoaded(false);
+        setHasError(false);
     }, [images.length]);
 
     useEffect(() => {
@@ -76,14 +84,33 @@ export default function ImagePreview({
                             className="relative w-full h-full flex items-center justify-center"
                         >
                             <div className="relative w-full h-full">
-                                <NextImage
-                                    src={images[currentIndex]}
-                                    alt={`Preview ${currentIndex + 1}`}
-                                    fill
-                                    className="object-contain"
-                                    sizes="100vw"
-                                    priority
-                                />
+                                {!hasError ? (
+                                    <>
+                                        <NextImage
+                                            src={images[currentIndex]}
+                                            alt={`Preview ${currentIndex + 1}`}
+                                            fill
+                                            className={`object-contain transition-opacity duration-300 ${
+                                                isImageLoaded ? "opacity-100" : "opacity-0"
+                                            }`}
+                                            sizes="100vw"
+                                            quality={85}
+                                            priority
+                                            onLoad={() => setIsImageLoaded(true)}
+                                            onError={() => setHasError(true)}
+                                        />
+                                        {!isImageLoaded && (
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                                            </div>
+                                        )}
+                                    </>
+                                ) : (
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white/70">
+                                        <div className="text-6xl mb-4">⚠️</div>
+                                        <p className="text-lg">ไม่สามารถโหลดรูปได้</p>
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
 

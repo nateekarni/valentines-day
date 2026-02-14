@@ -25,6 +25,8 @@ export default function TimelineItem({
 }: TimelineItemProps) {
   const isTextLeft = layout === "text-left";
   const [previewIndex, setPreviewIndex] = useState<number | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [errorImages, setErrorImages] = useState<Set<number>>(new Set());
 
   const handleImageClick = (index: number) => {
     setPreviewIndex(index);
@@ -32,6 +34,14 @@ export default function TimelineItem({
 
   const closePreview = () => {
     setPreviewIndex(null);
+  };
+
+  const handleImageLoad = (index: number) => {
+    setLoadedImages((prev) => new Set([...prev, index]));
+  };
+
+  const handleImageError = (index: number) => {
+    setErrorImages((prev) => new Set([...prev, index]));
   };
 
   return (
@@ -69,13 +79,32 @@ export default function TimelineItem({
                     className="relative w-[60px] h-[60px] md:w-[70px] md:h-[70px] flex-shrink-0 cursor-pointer overflow-hidden rounded-md border-2 border-white shadow-sm hover:scale-105 transition-transform"
                     onClick={() => handleImageClick(i)}
                   >
-                    <NextImage
-                      src={img}
-                      alt={`Timeline image ${i + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 60px, 70px"
-                    />
+                    {!errorImages.has(i) ? (
+                      <>
+                        <NextImage
+                          src={img}
+                          alt={`Timeline image ${i + 1}`}
+                          fill
+                          className={`object-cover transition-opacity duration-300 ${
+                            loadedImages.has(i) ? "opacity-100" : "opacity-0"
+                          }`}
+                          sizes="(max-width: 768px) 60px, 70px"
+                          quality={75}
+                          loading="lazy"
+                          onLoad={() => handleImageLoad(i)}
+                          onError={() => handleImageError(i)}
+                        />
+                        {!loadedImages.has(i) && (
+                          <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+                            <div className="w-6 h-6 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 bg-gray-100 flex items-center justify-center text-gray-400 text-xs">
+                        ❌
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -122,13 +151,32 @@ export default function TimelineItem({
                     className="relative w-[60px] h-[60px] md:w-[70px] md:h-[70px] flex-shrink-0 cursor-pointer overflow-hidden rounded-md border-2 border-white shadow-sm hover:scale-105 transition-transform"
                     onClick={() => handleImageClick(i)}
                   >
-                    <NextImage
-                      src={img}
-                      alt={`Timeline image ${i + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 60px, 70px"
-                    />
+                    {!errorImages.has(i) ? (
+                      <>
+                        <NextImage
+                          src={img}
+                          alt={`Timeline image ${i + 1}`}
+                          fill
+                          className={`object-cover transition-opacity duration-300 ${
+                            loadedImages.has(i) ? "opacity-100" : "opacity-0"
+                          }`}
+                          sizes="(max-width: 768px) 60px, 70px"
+                          quality={75}
+                          loading="lazy"
+                          onLoad={() => handleImageLoad(i)}
+                          onError={() => handleImageError(i)}
+                        />
+                        {!loadedImages.has(i) && (
+                          <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+                            <div className="w-6 h-6 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 bg-gray-100 flex items-center justify-center text-gray-400 text-xs">
+                        ❌
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
